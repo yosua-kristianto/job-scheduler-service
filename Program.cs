@@ -1,5 +1,7 @@
 using etl_job_service.Config;
-using etl_job_service.Repository;
+using etl_job_service.Handler;
+using etl_job_service.Repository.Img;
+using etl_job_service.Repository.Job;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,12 +9,22 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddSwaggerGen();
 
 // Load Environment Variables
-// @todo Setup environment variables loader
+Dictionary<string, string> mapEnvKey()
+{
+    // @todo: Make it more dynamic
+
+    return new() {
+        { EnvironmentVariableConstant.environmentVariables["DefaultFileStoragePath"], builder.Configuration.GetValue<string>("DefaultFileStoragePath")}
+    };
+}
+
+EnvironmentVariables.Instance(mapEnvKey());
 
 // Registering Database Connection to Dependency Injection
 builder.Services.AddDbContext<DatabaseContext>(
@@ -21,8 +33,14 @@ builder.Services.AddDbContext<DatabaseContext>(
         new MySqlServerVersion(new Version())
 ));
 
+
+// Registering Handler to Dependency Injection
+builder.Services.AddScoped<IOcrSchedulerControllerHandler, OcrSchedulerControllerHandler>();
+
 // Registering Repository to Dependency Injection
 builder.Services.AddScoped<IImageProfileRepository, ImageProfileRepository>();
+builder.Services.AddScoped<IJobSchedulerRepository, JobSchedulerRepository>();
+builder.Services.AddScoped<IJobRepository, JobRepository>();
 
 var app = builder.Build();
 
