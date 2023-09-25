@@ -17,7 +17,7 @@
          */
         public static Dictionary<string, string> environmentVariables = new Dictionary<string, string>
         {
-            { "ConnectionStrings:DefaultConnection", "database-connection" }
+            { "DefaultFileStoragePath", "default-file-storage-path" }
         };
     }
 }
