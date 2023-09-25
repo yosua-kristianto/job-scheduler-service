@@ -7,14 +7,13 @@ namespace etl_job_service.Entity.Img
      * ImageProfile
      * 
      * @version 0.0.1
-     * 
-     * @todo Make this snake_case or try to serialize this as snake_case on response.
      */ 
     [Table("img_tbl_image_profile")]
     public class ImageProfile
     {
+        [Key]
         [Column("image_id")]
-        public string id { get; set; }
+        public string id { get; private set; }
 
         [Column("image_original_name")]
         public string originalName { get; set; }

@@ -13,15 +13,16 @@ namespace etl_job_service.Config
     public class EnvironmentVariables
     {
         private static EnvironmentVariables _instance = null;
-        private readonly Dictionary<string, string> keys = new();
+        private Dictionary<string, string> keys = new();
 
         private EnvironmentVariables() { }
 
-        public static EnvironmentVariables Instance()
+        public static EnvironmentVariables Instance(Dictionary<string, string> setupKeys)
         {
             if( _instance == null)
             {
                 _instance = new EnvironmentVariables();
+                _instance.keys = setupKeys;
             }
             return _instance;
         }

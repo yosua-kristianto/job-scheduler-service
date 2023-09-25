@@ -16,8 +16,6 @@ namespace etl_job_service.Config
      * 
      * This file is used for handshake Entity Framework by giving context to connection pool and actually 
      * registering all models used for this context.
-     * 
-     * @todo Re-enable all commented out models since they are not mapped yet.
      */ 
     public class DatabaseContext : DbContext
     {
@@ -26,10 +24,46 @@ namespace etl_job_service.Config
         }
 
         public DbSet<ImageProfile> ImageProfile { get; set; }
-        //public DbSet<JobScheduler> JobScheduler { get; set; }
-        //public DbSet<MapImageProfileJobScheduler> MapImageProfileJobScheduler { get; set; }
-        //public DbSet<ResultHistory> ResultHistory { get; set; }
-        //public DbSet<JobProgress> JobProgress { get; set; } 
-        //public DbSet<OcrResultRecap> OcrResultRecap { get; set; }
+        public DbSet<JobScheduler> JobScheduler { get; set; }
+        public DbSet<MapImageProfileJobScheduler> MapImageProfileJobScheduler { get; set; }
+        public DbSet<ResultHistory> ResultHistory { get; set; }
+        public DbSet<JobProgress> JobProgress { get; set; }
+        public DbSet<OcrResultRecap> OcrResultRecap { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ImageProfile>(entity =>
+            {
+                entity.Property(e => e.id)
+                    .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.createdAt)
+                    .ValueGeneratedOnAdd();
+            });
+
+            modelBuilder.Entity<JobScheduler>(entity =>
+            {
+                entity.Property(e => e.id)
+                    .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.createdAt)
+                    .ValueGeneratedOnAdd();
+            });
+
+            modelBuilder.Entity<MapImageProfileJobScheduler>(entity =>
+            {
+                entity.Property(e => e.id)
+                    .ValueGeneratedOnAdd();
+            });
+
+            modelBuilder.Entity<ResultHistory>(entity =>
+            {
+                entity.Property(e => e.id)
+                    .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.createdAt)
+                    .ValueGeneratedOnAdd();
+            });
+        }
     }
 }
