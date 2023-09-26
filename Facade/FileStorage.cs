@@ -29,6 +29,7 @@
             // Call off step 2
             Stream fileStream = new FileStream(Path.Combine(pathTarget, targetFileName), FileMode.Create);
             file.CopyTo(fileStream);
+            fileStream.Close();
         }
     }
 }
