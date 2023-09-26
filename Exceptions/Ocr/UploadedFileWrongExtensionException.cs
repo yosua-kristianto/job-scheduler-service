@@ -5,7 +5,7 @@
         public UploadedFileWrongExtensionException()
         {
             this.code = "OCR0001";
-            this.message = "The uploaded file must be image with type of jpg or png.";
+            this.message = "The uploaded file must be image with type of jpg, png, or zip.";
         }
     }
 }

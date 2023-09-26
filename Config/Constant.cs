@@ -17,7 +17,8 @@
          */
         public static Dictionary<string, string> environmentVariables = new Dictionary<string, string>
         {
-            { "DefaultFileStoragePath", "default-file-storage-path" }
+            { "DefaultFileStoragePath", "default-file-storage-path" },
+            { "CustomLogRepository", "default-log-path" }
         };
     }
 }

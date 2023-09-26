@@ -20,7 +20,8 @@ Dictionary<string, string> mapEnvKey()
     // @todo: Make it more dynamic
 
     return new() {
-        { EnvironmentVariableConstant.environmentVariables["DefaultFileStoragePath"], builder.Configuration.GetValue<string>("DefaultFileStoragePath")}
+        { EnvironmentVariableConstant.environmentVariables["DefaultFileStoragePath"], builder.Configuration.GetValue<string>("DefaultFileStoragePath")},
+        { EnvironmentVariableConstant.environmentVariables["CustomLogRepository"], builder.Configuration.GetValue<string>("CustomLogRepository")},
     };
 }
 

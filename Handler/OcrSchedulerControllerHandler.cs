@@ -4,8 +4,10 @@ using etl_job_service.DTO.Response.OcrScheduler;
 using etl_job_service.Entity.Img;
 using etl_job_service.Entity.Job;
 using etl_job_service.Exceptions.Ocr;
+using etl_job_service.Facade;
 using etl_job_service.Repository.Img;
 using etl_job_service.Repository.Job;
+using System.IO.Compression;
 
 namespace etl_job_service.Handler
 {
@@ -33,13 +35,25 @@ namespace etl_job_service.Handler
          *      => Taken from controller
          *  fileExtension
          *      => Taken from UploadImageHandler function.
+         *      
+         * Every file getting through this function must be .png or .jpg
+         * 
+         * @throws 
+         * - OCR0003
          */
         private UploadImageSync OneByOneFileOperation(UploadImageSyncAsync request, string fileExtension)
         {
+            // Since zip file is not validated in first place, this snippet used to make sure the extension is .png or .jpg
+            string extension = Path.GetExtension(request.Image.FileName).ToLower();
+            if (extension != ".png" || extension != ".jpg")
+            {
+                new OCRWrongFileExtensionTypeException(extension);
+            }
+
             // Call out 1.1.3 to 1.1.6
             ImageProfile imageProfile;
             
-            string fileServerName = fileExtension.ToUpper() + "#" + DateTime.Now.ToString("YMdHms") + "." + fileExtension;
+            string fileServerName = (fileExtension.ToUpper()).Replace(".", "") + "#" + DateTime.Now.ToString("yyyyMMddHms") + "." + extension;
             if (request.ExpectedOutput != null)
             {
                 imageProfile = this.imageRepository.Create(request.Image.FileName, fileServerName, request.ExpectedOutput);
@@ -82,11 +96,44 @@ namespace etl_job_service.Handler
             {
                 case ".png":
                 case ".jpg":
-                    this.OneByOneFileOperation(request, fileExtension);
+
+                    try
+                    {
+                        this.OneByOneFileOperation(request, fileExtension);
+                        Log.I("[Singular File Operation] Successfully inserting image of " + request.Image.FileName + " to scheduler");
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.E("[Singular File Operation] Inserting image of " + request.Image.FileName + " cannot be executed due to " + ex.Message);
+                        throw new Exception("[Singular File Operation] Inserting image of " + request.Image.FileName + " cannot be executed due to " + ex.Message);
+                    }
+
                     break;
 
                 case ".zip":
-                    throw new Exception("Zip operation is not implemented yet.");
+                    Stream stream = request.Image.OpenReadStream();
+                    ZipArchive archive = new ZipArchive(stream);
+
+                    foreach(ZipArchiveEntry file in archive.Entries)
+                    {
+                        UploadImageSyncAsync data = request;
+
+                        MemoryStream fileStream = new MemoryStream();
+
+                        file.Open().CopyTo(fileStream);
+                        fileStream.Position = 0;
+
+                        data.Image = new FormFile(fileStream, 0, fileStream.Length, file.Name, file.FullName);
+                        try
+                        {
+                            this.OneByOneFileOperation(data, fileExtension);
+                            Log.I("[Zipped File Operation] Successfully inserting image of " + data.Image.FileName + " to scheduler");
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.E("[Zipped File Operation] Inserting image of " + data.Image.FileName + " cannot be executed due to " + ex.Message);
+                        }
+                    }
                     break;
                 default:
                     throw new UploadedFileWrongExtensionException();
