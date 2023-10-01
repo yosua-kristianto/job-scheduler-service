@@ -1,7 +1,7 @@
-using etl_job_service.Config;
-using etl_job_service.Handler;
-using etl_job_service.Repository.Img;
-using etl_job_service.Repository.Job;
+using job_scheduler_service.Config;
+using job_scheduler_service.Handler;
+using job_scheduler_service.Repository.Img;
+using job_scheduler_service.Repository.Job;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

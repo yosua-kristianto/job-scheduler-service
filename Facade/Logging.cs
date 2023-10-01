@@ -1,6 +1,6 @@
-﻿using etl_job_service.Config;
+﻿using job_scheduler_service.Config;
 
-namespace etl_job_service.Facade
+namespace job_scheduler_service.Facade
 {
     /**
      * Logging

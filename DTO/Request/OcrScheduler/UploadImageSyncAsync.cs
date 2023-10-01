@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace etl_job_service.DTO.Request.OcrScheduler
+namespace job_scheduler_service.DTO.Request.OcrScheduler
 {
     public class UploadImageSyncAsync
     {

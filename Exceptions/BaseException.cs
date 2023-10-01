@@ -1,4 +1,4 @@
-﻿namespace etl_job_service.Exceptions
+﻿namespace job_scheduler_service.Exceptions
 {
     public class BaseException: Exception
     {

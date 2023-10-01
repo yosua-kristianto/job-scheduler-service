@@ -1,7 +1,7 @@
-﻿using etl_job_service.Config;
-using etl_job_service.Entity.Img;
+﻿using job_scheduler_service.Config;
+using job_scheduler_service.Entity.Img;
 
-namespace etl_job_service.Repository.Img
+namespace job_scheduler_service.Repository.Img
 {
     public class ImageProfileRepository : BaseRepository, IImageProfileRepository
     {

@@ -1,6 +1,6 @@
-﻿using etl_job_service.Entity.Job;
+﻿using job_scheduler_service.Entity.Job;
 
-namespace etl_job_service.Repository.Job
+namespace job_scheduler_service.Repository.Job
 {
     public interface IJobSchedulerRepository
     {

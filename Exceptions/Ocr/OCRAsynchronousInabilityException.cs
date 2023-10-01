@@ -1,4 +1,4 @@
-﻿namespace etl_job_service.Exceptions.Ocr
+﻿namespace job_scheduler_service.Exceptions.Ocr
 {
     public class OCRAsynchronousInabilityException: BaseException
     {

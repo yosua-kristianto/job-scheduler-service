@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace etl_job_service.Entity.Ocr
+namespace job_scheduler_service.Entity.Ocr
 {
     /**
      * ResultHistory

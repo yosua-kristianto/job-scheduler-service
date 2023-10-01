@@ -1,11 +1,11 @@
-﻿using etl_job_service.DTO;
-using etl_job_service.DTO.Request.OcrScheduler;
-using etl_job_service.DTO.Response.OcrScheduler;
-using etl_job_service.Handler;
+﻿using job_scheduler_service.DTO;
+using job_scheduler_service.DTO.Request.OcrScheduler;
+using job_scheduler_service.DTO.Response.OcrScheduler;
+using job_scheduler_service.Handler;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.CompilerServices;
 
-namespace etl_job_service.Controllers
+namespace job_scheduler_service.Controllers
 {
     /**
      * OCRSchedulerController

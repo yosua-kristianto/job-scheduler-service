@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "etl_job_service": {
+    "job_scheduler_service": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

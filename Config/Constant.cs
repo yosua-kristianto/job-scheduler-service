@@ -1,4 +1,4 @@
-﻿namespace etl_job_service.Config
+﻿namespace job_scheduler_service.Config
 {
     public class EnvironmentVariableConstant
     {

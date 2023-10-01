@@ -1,14 +1,14 @@
-﻿using etl_job_service.Entity.Img;
-using etl_job_service.Entity.Job;
-using etl_job_service.Entity.Ocr;
-using etl_job_service.Entity.View;
+﻿using job_scheduler_service.Entity.Img;
+using job_scheduler_service.Entity.Job;
+using job_scheduler_service.Entity.Ocr;
+using job_scheduler_service.Entity.View;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.CompilerServices;
 
 /**
  * @link https://learn.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=visual-studio
  */
-namespace etl_job_service.Config
+namespace job_scheduler_service.Config
 {
     /**
      * @config

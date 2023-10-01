@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace etl_job_service.Migrations
+namespace job_scheduler_service.Migrations
 {
     /// <inheritdoc />
     public partial class JobSchedulerServices : Migration

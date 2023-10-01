@@ -1,7 +1,7 @@
-﻿using etl_job_service.DTO.Request.OcrScheduler;
-using etl_job_service.DTO.Response.OcrScheduler;
+﻿using job_scheduler_service.DTO.Request.OcrScheduler;
+using job_scheduler_service.DTO.Response.OcrScheduler;
 
-namespace etl_job_service.Handler
+namespace job_scheduler_service.Handler
 {
     public interface IOcrSchedulerControllerHandler
     {

@@ -1,15 +1,15 @@
-﻿using etl_job_service.Config;
-using etl_job_service.DTO.Request.OcrScheduler;
-using etl_job_service.DTO.Response.OcrScheduler;
-using etl_job_service.Entity.Img;
-using etl_job_service.Entity.Job;
-using etl_job_service.Exceptions.Ocr;
-using etl_job_service.Facade;
-using etl_job_service.Repository.Img;
-using etl_job_service.Repository.Job;
+﻿using job_scheduler_service.Config;
+using job_scheduler_service.DTO.Request.OcrScheduler;
+using job_scheduler_service.DTO.Response.OcrScheduler;
+using job_scheduler_service.Entity.Img;
+using job_scheduler_service.Entity.Job;
+using job_scheduler_service.Exceptions.Ocr;
+using job_scheduler_service.Facade;
+using job_scheduler_service.Repository.Img;
+using job_scheduler_service.Repository.Job;
 using System.IO.Compression;
 
-namespace etl_job_service.Handler
+namespace job_scheduler_service.Handler
 {
     public class OcrSchedulerControllerHandler : IOcrSchedulerControllerHandler
     {

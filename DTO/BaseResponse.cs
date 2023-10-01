@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace etl_job_service.DTO
+namespace job_scheduler_service.DTO
 {
     /**
      * BaseResponse

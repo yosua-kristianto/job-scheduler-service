@@ -3,11 +3,11 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using etl_job_service.Config;
+using job_scheduler_service.Config;
 
 #nullable disable
 
-namespace etl_job_service.Migrations
+namespace job_scheduler_service.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
     partial class DatabaseContextModelSnapshot : ModelSnapshot
@@ -19,7 +19,7 @@ namespace etl_job_service.Migrations
                 .HasAnnotation("ProductVersion", "7.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("etl_job_service.Entity.Img.ImageProfile", b =>
+            modelBuilder.Entity("job_scheduler_service.Entity.Img.ImageProfile", b =>
                 {
                     b.Property<string>("id")
                         .HasColumnType("varchar(36)")
@@ -55,7 +55,7 @@ namespace etl_job_service.Migrations
                     b.ToTable("img_tbl_image_profile");
                 });
 
-            modelBuilder.Entity("etl_job_service.Entity.Job.JobScheduler", b =>
+            modelBuilder.Entity("job_scheduler_service.Entity.Job.JobScheduler", b =>
                 {
                     b.Property<string>("id")
                         .HasColumnType("varchar(36)")
@@ -87,7 +87,7 @@ namespace etl_job_service.Migrations
                     b.ToTable("job_tbl_job_scheduler");
                 });
 
-            modelBuilder.Entity("etl_job_service.Entity.Job.MapImageProfileJobScheduler", b =>
+            modelBuilder.Entity("job_scheduler_service.Entity.Job.MapImageProfileJobScheduler", b =>
                 {
                     b.Property<string>("id")
                         .HasColumnType("varchar(36)")
@@ -110,7 +110,7 @@ namespace etl_job_service.Migrations
                     b.ToTable("job_map_image_profile_job_scheduler_mapper");
                 });
 
-            modelBuilder.Entity("etl_job_service.Entity.Ocr.ResultHistory", b =>
+            modelBuilder.Entity("job_scheduler_service.Entity.Ocr.ResultHistory", b =>
                 {
                     b.Property<string>("resultHistoryId")
                         .HasColumnType("varchar(36)")
